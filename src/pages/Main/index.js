@@ -13,7 +13,8 @@ export default class Main extends Component {
     newRepo: '',
     repositories: [],
     loading: false,
-    error: false,  };
+    error: false,
+  };
 
   // carregar os dados do localStorage
   componentDidMount() {
@@ -31,7 +32,7 @@ export default class Main extends Component {
     }
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ newRepo: e.target.value });
   };
 
@@ -119,7 +120,7 @@ export default class Main extends Component {
           </SubmitButton>
         </Form>
         <List>
-          {repositories.map(repository => (
+          {repositories.map((repository) => (
             <li key={repository.name}>
               <span>{repository.name}</span>
               <Link to={`/repository/${encodeURIComponent(repository.name)}`}>

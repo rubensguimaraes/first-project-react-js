@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Loading = styled.div`
-  color: #FFF;
+  color: #fff;
   font-size: 30px;
   font-weight: bold;
   display: flex;
@@ -119,7 +119,7 @@ export const IssueFilter = styled.div`
     border: 0;
     padding: 10px;
     margin: 0 5px;
-    &:nth-child(${props => props.active + 1}) {
+    &:nth-child(${(props) => props.active + 1}) {
       background: #7159c1;
       color: #fff;
     }

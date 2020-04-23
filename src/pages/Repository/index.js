@@ -49,36 +49,36 @@ export default class Repository extends Component {
       issues: issues.data,
       loading: false,
     });
- }
+  }
 
   loadIssues = async () => {
-  const { match } = this.props;
-  const { filterUsed, page } = this.state;
+    const { match } = this.props;
+    const { filterUsed, page } = this.state;
 
-  const repoName = decodeURIComponent(match.params.repository);
+    const repoName = decodeURIComponent(match.params.repository);
 
-  const response = await api.get(`/repos/${repoName}/issues`, {
-    params: {
-      state: filterUsed,
-      per_page: 5,
-      page,
-    },
-  });
+    const response = await api.get(`/repos/${repoName}/issues`, {
+      params: {
+        state: filterUsed,
+        per_page: 5,
+        page,
+      },
+    });
 
-  this.setState({ issues: response.data });
-};
+    this.setState({ issues: response.data });
+  };
 
-handleFilterChange = async filterUsed => {
-  await this.setState({ filterUsed, page: 1 });
-  this.loadIssues();
-};
-
-handlePage = async page => {
-  if (page > 0) {
-    await this.setState({ page });
+  handleFilterChange = async (filterUsed) => {
+    await this.setState({ filterUsed, page: 1 });
     this.loadIssues();
-  }
-};
+  };
+
+  handlePage = async (page) => {
+    if (page > 0) {
+      await this.setState({ page });
+      this.loadIssues();
+    }
+  };
 
   render() {
     const { repository, issues, loading, filters, page } = this.state;
@@ -92,8 +92,8 @@ handlePage = async page => {
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
-          <select onChange={e => this.handleFilterChange(e.target.value)}>
-            {filters.map(filter => (
+          <select onChange={(e) => this.handleFilterChange(e.target.value)}>
+            {filters.map((filter) => (
               <option
                 // selected={filter.selected}
                 value={filter.value}
@@ -105,13 +105,13 @@ handlePage = async page => {
           </select>
         </Owner>
         <IssueList>
-          {issues.map(issue => (
+          {issues.map((issue) => (
             <li key={String(issue.id)}>
               <img src={issue.user.avatar_url} alt={issue.user.login} />
               <div>
                 <strong>
                   <a href={issue.html_url}>{issue.title}</a>
-                  {issue.labels.map(label => (
+                  {issue.labels.map((label) => (
                     <span key={String(label.id)}>{label.name}</span>
                   ))}
                 </strong>
@@ -129,6 +129,6 @@ handlePage = async page => {
           <FaArrowRight onClick={() => this.handlePage(page + 1)} />
         </Pagination>
       </Container>
-    )
+    );
   }
 }
