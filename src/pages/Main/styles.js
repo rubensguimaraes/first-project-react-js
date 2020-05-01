@@ -56,23 +56,26 @@ export const SubmitButton = styled.button.attrs((props) => ({
 `;
 
 export const List = styled.ul`
-  list-style: none;
+  list-style: none; /* Retira as bolinhas que ficam no início de uma lista */
   margin-top: 30px;
 
+  /* Para cada linha o estilo será o seguinte */
   li {
-    padding: 15px 0;
+    padding: 15px 0; /* Espaçamento acima e abaixo de 15px  */
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Colocará o título do repositório para a esquerda e o detalhes para esquerda */
+    align-items: center; /* Força o alinhamento vertical do título e do detalhes */
 
+    /* o & indica que pegaremos todos os li, e depois os li seguidos por um li anterior */
+    /* ou seja, aplica a estilização em todos os li, exceto o primeiro. */
     & + li {
-      border-top: 1px solid #eee;
+      border-top: 1px solid #eee; /* Cria uma borda cinza entre cada item (cada repositório digitado) */
     }
-
+    /* O a representa o "detalhes" */
     a {
       color: #7159c1;
-      text-decoration: none;
+      text-decoration: none; /* retira o undeline */
     }
   }
 `;

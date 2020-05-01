@@ -24,7 +24,7 @@ export default class Main extends Component {
     }
   }
 
-  // salvar os dados no localSotrage
+  // salvar os dados no localStorage
   componentDidUpdate(_, prevState) {
     const { repositories } = this.state;
     if (prevState.repositories !== repositories) {
