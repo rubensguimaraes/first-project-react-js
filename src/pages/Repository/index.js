@@ -104,13 +104,20 @@ export default class Repository extends Component {
             ))}
           </select>
         </Owner>
+        {/* Responsável pela listagem da issues */}
         <IssueList>
+          {/** Percorremos o array issues */}
+          {/** O primeiro item sempre precisa possuir uma key, informação única da issue */}
+          {/** String transforma em string */}
           {issues.map((issue) => (
             <li key={String(issue.id)}>
               <img src={issue.user.avatar_url} alt={issue.user.login} />
+              {/** Esta div é para permitir o encapsulamento de vários itens dentro do flex box,
+                  para que eles não fiquem um ao lado do outro */}
               <div>
                 <strong>
                   <a href={issue.html_url}>{issue.title}</a>
+                  {/** Exibição das labels (que também é um vetor) da issues */}
                   {issue.labels.map((label) => (
                     <span key={String(label.id)}>{label.name}</span>
                   ))}
